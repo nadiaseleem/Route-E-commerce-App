@@ -22,4 +22,6 @@
     <string name="add_to_cart">Add to cart</string>
     <string name="egp_1_500">EGP 1,500</string>
     <string name="egp_1_200">EGP 1,200</string>
+    <string name="total_price">Total price</string>
+    <string name="cart">Cart</string>
 </resources>
