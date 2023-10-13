@@ -1,10 +1,11 @@
-package com.example.routee_commerce
+package com.example.routee_commerce.activities.MainActivity
 
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.routee_commerce.R
 
 
 class MainActivity : AppCompatActivity() {
