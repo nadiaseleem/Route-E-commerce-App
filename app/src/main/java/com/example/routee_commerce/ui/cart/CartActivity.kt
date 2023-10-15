@@ -1,7 +1,7 @@
-package com.example.routee_commerce.activities.cart
+package com.example.routee_commerce.ui.cart
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.routee_commerce.R
 
 class CartActivity : AppCompatActivity() {

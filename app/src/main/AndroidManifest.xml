@@ -13,7 +13,7 @@
         android:theme="@style/Theme.RouteECommerce"
         tools:targetApi="31">
         <activity
-            android:name=".splash.SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,13 +22,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.cart.CartActivity"
+            android:name=".ui.cart.CartActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity.MainActivity"
-            android:exported="false">
-
-        </activity>
+            android:name=".ui.home.activity.MainActivity"
+            android:exported="false"></activity>
     </application>
 
 </manifest>
