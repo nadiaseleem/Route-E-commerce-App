@@ -1,12 +1,11 @@
-package com.example.routee_commerce.fragments.profile
+package com.example.routee_commerce.ui.home.fragments.profile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.routee_commerce.R
-
 
 
 class ProfileFragment : Fragment() {
@@ -15,6 +14,7 @@ class ProfileFragment : Fragment() {
 
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

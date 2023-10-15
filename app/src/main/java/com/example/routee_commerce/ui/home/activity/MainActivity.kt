@@ -1,33 +1,19 @@
-package com.example.routee_commerce.splash
+package com.example.routee_commerce.ui.home.activity
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.routee_commerce.R
-import com.example.routee_commerce.activities.MainActivity.MainActivity
 
-class SplashActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
-
+        setContentView(R.layout.activity_main)
         makeStatusBarTransparentAndIconsClear()
-        Handler(Looper.getMainLooper())
-            .postDelayed({
-                startMainActivity()
-            }, 1200)
 
-    }
-
-    private fun startMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 
     private fun makeStatusBarTransparentAndIconsClear() {
@@ -37,4 +23,6 @@ class SplashActivity : AppCompatActivity() {
             window.statusBarColor = Color.TRANSPARENT
         }
     }
+
+
 }
