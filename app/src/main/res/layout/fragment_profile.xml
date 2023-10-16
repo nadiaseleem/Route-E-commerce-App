@@ -156,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/edit_icon_size"
                 android:inputType="textPassword"
-                android:text="@string/password"
+                android:text="@string/password_fake"
                 android:textColor="@color/Darkblue" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
