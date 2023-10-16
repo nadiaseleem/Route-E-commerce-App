@@ -7,20 +7,6 @@
     android:padding="20dp"
     tools:context=".ui.home.fragments.profile.ProfileFragment">
 
-    <ImageView
-        android:id="@+id/route_logo"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:src="@drawable/route_logo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1H"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="73dp" />
 
     <TextView
         android:id="@+id/welcome_message"
@@ -30,7 +16,7 @@
         android:textColor="@color/Darkblue"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline1H"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Welcome,Ahmed" />
 
     <TextView

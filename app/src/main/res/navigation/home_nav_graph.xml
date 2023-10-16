@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.routee_commerce.ui.home.fragments.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.example.routee_commerce.ui.home.fragments.categories.CategoriesFragment"
+        android:label="CategoriesFragment"
+        tools:layout="@layout/fragment_categories" />
+    <fragment
+        android:id="@+id/productListFragment"
+        android:name="com.example.routee_commerce.ui.home.fragments.productList.ProductListFragment"
+        android:label="ProductListFragment"
+        tools:layout="@layout/fragment_product_list" />
+    <fragment
+        android:id="@+id/wishListFragment"
+        android:name="com.example.routee_commerce.ui.home.fragments.wishlist.WishListFragment"
+        android:label="fragment_wishlist"
+        tools:layout="@layout/fragment_wishlist" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.routee_commerce.ui.home.fragments.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

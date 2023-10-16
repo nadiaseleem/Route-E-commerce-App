@@ -1,73 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".ui.home.activity.MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <data>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".ui.home.activity.MainActivity">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
+            android:layout_height="wrap_content">
 
-            >
-
-            <LinearLayout
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:weightSum="2">
+                android:layout_marginEnd="15dp">
 
                 <ImageView
                     android:layout_width="66dp"
                     android:layout_height="22dp"
                     android:layout_marginTop="15dp"
-                    android:layout_weight="1"
                     android:src="@drawable/route" />
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:weightSum="10"
-
-                    >
-
-                    <androidx.appcompat.widget.SearchView
-                        android:id="@+id/search_bar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_weight="9"
-                        android:background="@drawable/search_view_border"
-                        android:visibility="visible"
-                        app:iconifiedByDefault="false"
-                        app:queryBackground="@android:color/transparent"
-                        app:queryHint="@string/what_do_you_search_for"
-                        app:searchIcon="@drawable/ic_search" />
-
-                    <ImageView
-                        android:id="@+id/cart"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="15dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_cart" />
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <include
-        android:id="@+id/content"
-        layout="@layout/content_main" />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <include
+            android:id="@+id/content"
+            layout="@layout/content_main" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

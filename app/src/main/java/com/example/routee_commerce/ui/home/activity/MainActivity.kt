@@ -1,27 +1,32 @@
 package com.example.routee_commerce.ui.home.activity
 
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.routee_commerce.R
+import com.example.routee_commerce.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        setContentView(binding.root)
         makeStatusBarTransparentAndIconsClear()
+        val navController = findNavController(R.id.home_host_fragment)
+        NavigationUI.setupWithNavController(binding.content.bottomNav, navController)
 
     }
 
     private fun makeStatusBarTransparentAndIconsClear() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
-            window.statusBarColor = Color.TRANSPARENT
-        }
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+        window.statusBarColor = Color.TRANSPARENT
     }
 
 
