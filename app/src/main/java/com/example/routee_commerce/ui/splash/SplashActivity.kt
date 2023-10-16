@@ -9,7 +9,7 @@ import android.os.Looper
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.routee_commerce.R
-import com.example.routee_commerce.ui.userAuthentication.activity.UserAuthenticationActivity
+import com.example.routee_commerce.ui.home.activity.MainActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun startMainActivity() {
-        val intent = Intent(this, UserAuthenticationActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
