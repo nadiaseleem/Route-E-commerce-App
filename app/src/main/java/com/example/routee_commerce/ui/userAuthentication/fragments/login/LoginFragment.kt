@@ -1,10 +1,10 @@
-package com.example.routee_commerce.ui.userAuthentication.fragments
+package com.example.routee_commerce.ui.userAuthentication.fragments.login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.routee_commerce.R
 
 class LoginFragment : Fragment() {

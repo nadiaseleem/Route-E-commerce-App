@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/user_authentication_nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/registerFragment">
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.routee_commerce.ui.userAuthentication.fragments.LoginFragment"
+        android:name="com.example.routee_commerce.ui.userAuthentication.fragments.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -16,11 +16,15 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.routee_commerce.ui.userAuthentication.fragments.RegisterFragment"
+        android:name="com.example.routee_commerce.ui.userAuthentication.fragments.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register">
         <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_registerFragment_to_loginFragment3"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
 </navigation>
