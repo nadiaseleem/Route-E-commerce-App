@@ -11,7 +11,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
 
-suspend fun <T> SafeApiCall(apiCall: suspend () -> T): ResultWrapper<T> {
+suspend fun <T> safeApiCall(apiCall: suspend () -> T): ResultWrapper<T> {
     try {
         val result = apiCall.invoke()
         return ResultWrapper.Success(result)

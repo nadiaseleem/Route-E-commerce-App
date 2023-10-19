@@ -4,18 +4,18 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.routee_commerce.R
 import com.example.routee_commerce.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         makeStatusBarTransparentAndIconsClear()
         val navController = findNavController(R.id.home_host_fragment)
@@ -29,5 +29,9 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor = Color.TRANSPARENT
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.unbind()
+    }
 
 }

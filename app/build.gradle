@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'androidx.navigation.safeargs.kotlin'
 
 }
 
@@ -67,13 +68,12 @@ dependencies {
     //leak canary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
 
-    //retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.11.0'
 
     //glide
     implementation 'com.github.bumptech.glide:glide:4.16.0'
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.8'
 
     //sharedPreferences
     implementation "androidx.preference:preference:1.2.1"
@@ -87,6 +87,9 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
+
+    //shimmer effect
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 }
 // Allow references to generated code
 kapt {
