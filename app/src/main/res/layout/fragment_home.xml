@@ -60,11 +60,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <include layout="@layout/home_categories_placeholder_layout" />
+                    <include layout="@layout/home_fragment_categories_placeholder_layout" />
 
-                    <include layout="@layout/home_categories_placeholder_layout" />
+                    <include layout="@layout/home_fragment_categories_placeholder_layout" />
 
-                    <include layout="@layout/home_categories_placeholder_layout" />
+                    <include layout="@layout/home_fragment_categories_placeholder_layout" />
 
                 </LinearLayout>
 
@@ -73,11 +73,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <include layout="@layout/home_categories_placeholder_layout" />
+                    <include layout="@layout/home_fragment_categories_placeholder_layout" />
 
-                    <include layout="@layout/home_categories_placeholder_layout" />
+                    <include layout="@layout/home_fragment_categories_placeholder_layout" />
 
-                    <include layout="@layout/home_categories_placeholder_layout" />
+                    <include layout="@layout/home_fragment_categories_placeholder_layout" />
                 </LinearLayout>
             </LinearLayout>
 

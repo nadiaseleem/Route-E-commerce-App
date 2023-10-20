@@ -23,11 +23,6 @@ class HomeViewModel @Inject constructor(
     override val events: MutableLiveData<EventWrapper<HomeFragmentContract.Event>>
         get() = _events
 
-    val shouldLoad: MutableLiveData<Boolean>
-        get() = MutableLiveData<Boolean>().apply {
-            value = _states.value is HomeFragmentContract.State.Loading
-        }
-
     override fun invokeAction(action: HomeFragmentContract.Action) {
         when (action) {
             is HomeFragmentContract.Action.LoadCategories -> {
@@ -50,7 +45,7 @@ class HomeViewModel @Inject constructor(
 
     private fun loadCategories() {
         viewModelScope.launch {
-            _states.postValue(HomeFragmentContract.State.Loading(message = "Loading Categories"))
+            _states.postValue(HomeFragmentContract.State.Loading())
             when (val result = categoryUseCase.invoke()) {
                 is ResultWrapper.Error -> {
                     _states.postValue(HomeFragmentContract.State.Error(message = result.error.localizedMessage))

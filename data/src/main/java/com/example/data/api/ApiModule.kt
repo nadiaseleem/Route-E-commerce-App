@@ -1,4 +1,4 @@
-package com.example.news.data.api
+package com.example.data.api
 
 import android.util.Log
 import dagger.Module
@@ -15,8 +15,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ApiModule {
 
     @Provides
-    fun provideWebServices(retrofit: Retrofit): WebServices {
-        return retrofit.create(WebServices::class.java)
+    fun provideWebServices(retrofit: Retrofit): CategoriesWebServices {
+        return retrofit.create(CategoriesWebServices::class.java)
     }
 
     @Provides

@@ -1,0 +1,17 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!-- Layer 2: A rounded rectangle to overlay the top-left corner -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/rv_bg" />
+            <corners android:radius="10dp" />
+            <size
+                android:width="100dp"
+                android:height="100dp" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/rv_stroke" />
+        </shape>
+    </item>
+</layer-list>

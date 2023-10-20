@@ -19,7 +19,7 @@ interface HomeFragmentContract {
     }
 
     sealed class State {
-        class Loading(val message: String) : State()
+        class Loading(val message: String? = null) : State()
         class Error(val message: String) : State()
         class Success(val categories: List<Category?>) : State()
     }

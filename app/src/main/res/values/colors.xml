@@ -7,5 +7,7 @@
     <color name="descDarkBlue">#9806004F</color>
     <color name="gray">#484848</color>
     <color name="background">#dddddd</color>
-
+    <color name="rv_bg">#80DBE4ED</color>
+    <color name="rv_stroke">#4D004182</color>
+    <color name="transparent">#00000000</color>
 </resources>
