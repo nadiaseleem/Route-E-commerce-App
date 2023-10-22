@@ -1,4 +1,4 @@
-package com.example.routee_commerce.api.model
+package com.example.routee_commerce.data.api.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

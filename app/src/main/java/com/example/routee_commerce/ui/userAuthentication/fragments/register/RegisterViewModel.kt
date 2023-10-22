@@ -4,22 +4,26 @@ import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.routee_commerce.api.ApiManger
-import com.example.routee_commerce.api.model.User
-import com.example.routee_commerce.api.model.UserResponse
-import com.example.routee_commerce.ui.userAuthentication.sessionProvider.SessionProvider
+import com.example.routee_commerce.data.api.model.User
+import com.example.routee_commerce.data.api.model.UserResponse
+import com.example.routee_commerce.userRepository.UserRepository
 import com.example.routee_commerce.utlis.Message
 import com.example.routee_commerce.utlis.SingleLiveEvent
 import com.google.gson.Gson
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import javax.inject.Inject
 
-class RegisterViewModel : ViewModel() {
-    val username = MutableLiveData<String>("ziad")
-    val phoneNumber = MutableLiveData<String>("01010101010")
-    val email = MutableLiveData<String>("ziad.fathi.seleem@gmail.com")
-    val password = MutableLiveData<String>("Ziads3223@")
-    val passwordConfirmation = MutableLiveData<String>("Ziads3223@")
+@HiltViewModel
+class RegisterViewModel @Inject constructor(
+    private val userRepository: UserRepository
+) : ViewModel() {
+    val username = MutableLiveData<String>()
+    val phoneNumber = MutableLiveData<String>()
+    val email = MutableLiveData<String>()
+    val password = MutableLiveData<String>()
+    val passwordConfirmation = MutableLiveData<String>()
 
     val usernameError = MutableLiveData<String?>()
     val phoneNumberError = MutableLiveData<String?>()
@@ -37,17 +41,11 @@ class RegisterViewModel : ViewModel() {
         shouldClearFocus.postValue(true)
         hideKeyboard.postValue(true)
         if (!validateForm()) return
-        val user = User(
-            username.value,
-            phoneNumber.value,
-            email.value,
-            password.value,
-            passwordConfirmation.value
-        )
+        val user = createUser()
         viewModelScope.launch {
             try {
-                val response = ApiManger.getApis().registerUser(user)
-                SessionProvider.user = response.user
+                val response = userRepository.registerUser(user)
+                response.token
                 messageLiveData.postValue(Message("User Registered successfully"))
                 //navigate to home screen
                 events.postValue(RegisterViewEvents.NavigateToHome)
@@ -62,12 +60,6 @@ class RegisterViewModel : ViewModel() {
         }
 
     }
-
-
-    fun onLoginClicked() {
-        events.postValue(RegisterViewEvents.NavigateToLogin)
-    }
-
 
     private fun validateForm(): Boolean {
         var valid = true
@@ -128,6 +120,20 @@ class RegisterViewModel : ViewModel() {
         }
 
         return valid
+    }
+
+    private fun createUser(): User {
+        return User(
+            username.value,
+            phoneNumber.value,
+            email.value,
+            password.value,
+            passwordConfirmation.value
+        )
+    }
+
+    fun onLoginClicked() {
+        events.postValue(RegisterViewEvents.NavigateToLogin)
     }
 
     fun onOutsideClick() {

@@ -14,7 +14,10 @@ import com.example.routee_commerce.databinding.FragmentRegisterBinding
 import com.example.routee_commerce.ui.home.activity.MainActivity
 import com.example.routee_commerce.utlis.hideKeyboard
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
     private lateinit var viewBinding: FragmentRegisterBinding
     private lateinit var viewModel: RegisterViewModel

@@ -1,7 +1,7 @@
-package com.example.routee_commerce.api
+package com.example.routee_commerce.data.api
 
-import com.example.routee_commerce.api.model.User
-import com.example.routee_commerce.api.model.UserResponse
+import com.example.routee_commerce.data.api.model.User
+import com.example.routee_commerce.data.api.model.UserResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 
