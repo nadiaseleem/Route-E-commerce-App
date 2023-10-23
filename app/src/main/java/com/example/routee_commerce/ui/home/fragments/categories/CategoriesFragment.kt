@@ -146,10 +146,21 @@ class CategoriesFragment : Fragment() {
         binding.categoriesShimmerViewContainer.isVisible = false
         binding.categoriesShimmerViewContainer.stopShimmerAnimation()
         initCategoryCard(categories[0])
+        categories[0]?.let {
+            viewModel.invokeAction(CategoriesFragmentContract.Action.LoadSubCategories(it))
 
+        }
+
+        args.category?.let { category ->
+            viewModel.invokeAction(CategoriesFragmentContract.Action.LoadSubCategories(category))
+        }
         if (args.category != null) {
             initCategoryCard(args.category)
             categoriesAdapter.selectItemOfCategory(category = args.category)
+            args.category?.let { category ->
+                viewModel.invokeAction(CategoriesFragmentContract.Action.LoadSubCategories(category))
+            }
+
         }
 
     }
