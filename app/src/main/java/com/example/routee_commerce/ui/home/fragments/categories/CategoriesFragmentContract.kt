@@ -25,7 +25,7 @@ interface CategoriesFragmentContract {
     sealed class State<out T> {
         class Loading(val message: String? = null) : State<Nothing>()
         class Error(val message: String) : State<Nothing>()
-        class Success<T>(val categories: List<T?>) : State<T>()
+        class Success<T>(val data: List<T?>) : State<T>()
     }
 
     sealed class Event {

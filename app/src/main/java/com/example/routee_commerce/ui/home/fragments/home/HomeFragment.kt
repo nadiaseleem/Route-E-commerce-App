@@ -1,7 +1,6 @@
 package com.example.routee_commerce.ui.home.fragments.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -91,7 +90,6 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding.unbind()
-        Log.e("app", "onDestroyView call")
 
     }
 
@@ -106,10 +104,5 @@ class HomeFragment : Fragment() {
 
     }
 
-    override fun onStop() {
-        super.onStop()
-        viewModel.events.removeObservers(viewLifecycleOwner)
-
-    }
 
 }
