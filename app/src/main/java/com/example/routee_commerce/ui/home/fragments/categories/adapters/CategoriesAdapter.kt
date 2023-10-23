@@ -1,5 +1,6 @@
 package com.example.routee_commerce.ui.home.fragments.categories.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,7 @@ class CategoriesAdapter(private var categories: List<Category?>? = null) :
                         R.color.rv_bg
                     )
                 )
-                itemCategoryBinding.draggingBar.visibility = View.INVISIBLE
+                itemCategoryBinding.draggingBar.visibility = View.GONE
             }
         }
 
@@ -60,7 +61,8 @@ class CategoriesAdapter(private var categories: List<Category?>? = null) :
                 notifyItemChanged(selectedPosition)
                 selectedPosition = position
                 notifyItemChanged(position)
-//                categoryClicked.invoke(position, category)
+                categoryClicked.invoke(position, category)
+                Log.i("categories item@", "$position selected")
 
             }
         }
@@ -73,5 +75,24 @@ class CategoriesAdapter(private var categories: List<Category?>? = null) :
         notifyDataSetChanged()
     }
 
+    fun selectItemOfCategory(category: Category?) {
+        Log.i("category passed item@", "$category passed")
+        Log.i("categories item@", "$categories ")
+
+        val index = categories?.indexOf(category)
+
+        index?.let {
+            notifyItemChanged(selectedPosition)
+            selectedPosition = index
+            notifyItemChanged(index)
+            Log.i("category item@", "$index selected")
+
+        }
+
+        Log.i("index item@", "$index")
+
+    }
+
     var categoryClicked: ((position: Int, category: Category) -> Unit)? = null
+
 }

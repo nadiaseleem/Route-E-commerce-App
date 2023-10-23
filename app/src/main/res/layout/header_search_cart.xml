@@ -6,7 +6,7 @@
 
     android:layout_marginTop="18dp"
     android:layout_weight="9"
-    android:paddingHorizontal="15dp">
+    android:paddingHorizontal="10dp">
 
 
     <androidx.appcompat.widget.SearchView

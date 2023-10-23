@@ -23,7 +23,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:url="@{category.image}"
+            app:urlCircular="@{category.image}"
             tools:src="@tools:sample/avatars" />
 
         <TextView

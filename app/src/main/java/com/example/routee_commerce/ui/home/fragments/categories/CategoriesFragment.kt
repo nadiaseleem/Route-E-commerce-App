@@ -1,26 +1,30 @@
 package com.example.routee_commerce.ui.home.fragments.categories
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.example.domain.model.Category
 import com.example.domain.model.Subcategory
-import com.example.routee_commerce.databinding.FragmentCategoriesBinding
+import com.example.routee_commerce.databinding.FragmentCatrgoriesNewBinding
 import com.example.routee_commerce.ui.home.fragments.categories.adapters.CategoriesAdapter
 import com.example.routee_commerce.utils.EventWrapper
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class CategoriesFragment : Fragment() {
-    private lateinit var binding: FragmentCategoriesBinding
+    private lateinit var binding: FragmentCatrgoriesNewBinding
     private val viewModel: CategoriesViewModel by viewModels()
+    private val args: CategoriesFragmentArgs by navArgs()
 
     @Inject
     lateinit var categoriesAdapter: CategoriesAdapter
@@ -28,8 +32,8 @@ class CategoriesFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentCategoriesBinding.inflate(inflater, container, false)
+    ): View {
+        binding = FragmentCatrgoriesNewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -40,10 +44,26 @@ class CategoriesFragment : Fragment() {
         viewModel.invokeAction(CategoriesFragmentContract.Action.LoadCategories)
     }
 
+    private fun initCategoryCard(category: Category?) {
+        Picasso.get()
+            .load(category?.image)
+            .centerCrop()
+            .fit()
+            .into(binding.cardBgImv)
+        binding.selectedCategoryName.text = category?.name
+        Log.i("category init card item@", "$category ")
+
+    }
+
+
     private fun initViews() {
         binding.categoriesRv.adapter = categoriesAdapter
 
+
+
         categoriesAdapter.categoryClicked = { position, category ->
+            initCategoryCard(category)
+
             viewModel.invokeAction(
                 CategoriesFragmentContract.Action.CategoryClicked(
                     position,
@@ -72,6 +92,7 @@ class CategoriesFragment : Fragment() {
             }
 
             is CategoriesFragmentContract.State.Loading -> {
+
             }
 
             is CategoriesFragmentContract.State.Success -> {
@@ -122,6 +143,13 @@ class CategoriesFragment : Fragment() {
         binding.errorView.isVisible = false
         binding.categoriesShimmerViewContainer.isVisible = false
         binding.categoriesShimmerViewContainer.stopShimmerAnimation()
+        initCategoryCard(categories[0])
+
+        if (args.category != null) {
+            Log.i("entered item@", "selected")
+            initCategoryCard(args.category)
+            categoriesAdapter.selectItemOfCategory(category = args.category)
+        }
 
     }
 
@@ -139,12 +167,6 @@ class CategoriesFragment : Fragment() {
 
     }
 
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding.unbind()
-
-    }
 
     override fun onResume() {
         super.onResume()
