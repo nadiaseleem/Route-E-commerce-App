@@ -20,4 +20,8 @@ class ProductDataSourceImpl @Inject constructor(private val webServices: Product
         }
 
     }
+
+    override suspend fun getProducts(categoryId: String?): ResultWrapper<List<Product?>?> {
+        return safeApiCall { webServices.getProducts(categoryId).data?.map { it?.toProduct() } }
+    }
 }

@@ -9,7 +9,8 @@ interface HomeFragmentContract {
 
     interface ViewModel {
         val categoriesStates: LiveData<CategoriesState>
-        val productsStates: LiveData<ProductsState>
+        val mostSellingProductsStates: LiveData<ProductsState>
+        val categoryPoductsStates: LiveData<ProductsState>
 
         val events: SingleLiveEvent<Event>
         fun invokeAction(action: Action)
@@ -19,6 +20,8 @@ interface HomeFragmentContract {
         object LoadCategories : Action()
 
         object LoadMostSellingProducts : Action()
+        object LoadCategoryProducts : Action()
+
         class CategoryClicked(val position: Int, val category: Category) : Action()
 
         class ProductClicked(val product: Product) : Action()

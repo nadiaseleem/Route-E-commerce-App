@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.domain.model.Category
 import com.example.domain.model.Product
+import com.example.routee_commerce.R
 import com.example.routee_commerce.databinding.FragmentHomeBinding
 import com.example.routee_commerce.ui.home.fragments.home.adapters.CategoriesAdapter
 import com.example.routee_commerce.ui.home.fragments.home.adapters.ProductsAdapter
@@ -28,7 +29,12 @@ class HomeFragment : Fragment() {
     lateinit var categoriesAdapter: CategoriesAdapter
 
     @Inject
-    lateinit var productsAdapter: ProductsAdapter
+    lateinit var mostSellingProductsAdapter: ProductsAdapter
+
+    @Inject
+    lateinit var categoryProductsAdapter: ProductsAdapter
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,6 +50,8 @@ class HomeFragment : Fragment() {
         initViews()
         viewModel.invokeAction(HomeFragmentContract.Action.LoadCategories)
         viewModel.invokeAction(HomeFragmentContract.Action.LoadMostSellingProducts)
+        viewModel.invokeAction(HomeFragmentContract.Action.LoadCategoryProducts)
+
     }
 
     private fun initViews() {
@@ -52,17 +60,25 @@ class HomeFragment : Fragment() {
         }
 
         binding.categoriesRv.adapter = categoriesAdapter
-        binding.mostSellingProductsRv.adapter = productsAdapter
-
+        binding.mostSellingProductsRv.adapter = mostSellingProductsAdapter
+        binding.categoryProductsRv.adapter = categoryProductsAdapter
+        binding.categoryNameTv.text = getString(R.string.electronics)
     }
 
     private fun subscribeToLiveData() {
         viewModel.categoriesStates.observe(viewLifecycleOwner, ::renderCategoriesViewState)
         viewModel.events.observe(viewLifecycleOwner, ::handleEvents)
-        viewModel.productsStates.observe(viewLifecycleOwner, ::renderProductViewStates)
+        viewModel.mostSellingProductsStates.observe(
+            viewLifecycleOwner,
+            ::renderMostSellingProductViewStates
+        )
+        viewModel.categoryPoductsStates.observe(
+            viewLifecycleOwner,
+            ::renderCategoryProductsViewStates
+        )
     }
 
-    private fun renderProductViewStates(productsState: HomeFragmentContract.ProductsState) {
+    private fun renderCategoryProductsViewStates(productsState: HomeFragmentContract.ProductsState) {
         when (productsState) {
             is HomeFragmentContract.ProductsState.Error -> {
                 Snackbar.make(
@@ -70,17 +86,46 @@ class HomeFragment : Fragment() {
                     "Please check your internet connection",
                     Snackbar.LENGTH_LONG
                 ).setAnimationMode(ANIMATION_MODE_SLIDE).show()
+                binding.categoryProductsShimmerViewContainer.stopShimmerAnimation()
+
             }
 
             is HomeFragmentContract.ProductsState.Loading -> {
-                binding.productsShimmerViewContainer.startShimmerAnimation()
+
+                binding.categoryProductsShimmerViewContainer.startShimmerAnimation()
+            }
+
+            is HomeFragmentContract.ProductsState.Success -> {
+                categoryProductsAdapter.bindProducts(productsState.products)
+                binding.categoryProductsShimmerViewContainer.stopShimmerAnimation()
+                binding.categoryProductsShimmerViewContainer.visibility = View.INVISIBLE
+
+
+            }
+        }
+    }
+
+    private fun renderMostSellingProductViewStates(productsState: HomeFragmentContract.ProductsState) {
+        when (productsState) {
+            is HomeFragmentContract.ProductsState.Error -> {
+                Snackbar.make(
+                    requireView(),
+                    "Please check your internet connection",
+                    Snackbar.LENGTH_LONG
+                ).setAnimationMode(ANIMATION_MODE_SLIDE).show()
+                binding.mostSellingProductsShimmerViewContainer.stopShimmerAnimation()
+
+            }
+
+            is HomeFragmentContract.ProductsState.Loading -> {
+                binding.mostSellingProductsShimmerViewContainer.startShimmerAnimation()
 
             }
 
             is HomeFragmentContract.ProductsState.Success -> {
-                productsAdapter.bindProducts(productsState.products)
-                binding.productsShimmerViewContainer.stopShimmerAnimation()
-                binding.productsShimmerViewContainer.visibility = View.INVISIBLE
+                mostSellingProductsAdapter.bindProducts(productsState.products)
+                binding.mostSellingProductsShimmerViewContainer.stopShimmerAnimation()
+                binding.mostSellingProductsShimmerViewContainer.visibility = View.INVISIBLE
             }
         }
 
@@ -124,7 +169,7 @@ class HomeFragment : Fragment() {
             is HomeFragmentContract.CategoriesState.Success -> {
                 categoriesAdapter.bindCategories(categoriesState.categories)
                 binding.categoriesShimmerViewContainer.stopShimmerAnimation()
-                binding.categoriesShimmerViewContainer.visibility = View.GONE
+                binding.categoriesShimmerViewContainer.visibility = View.INVISIBLE
             }
 
         }

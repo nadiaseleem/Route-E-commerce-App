@@ -11,4 +11,11 @@ interface ProductsWebServices {
         @Query("limit") limit: Int = 10,
         @Query("sort") sortBy: String = "-sold"
     ): ProductResponse
+
+    @GET("api/v1/products")
+    suspend fun getProducts(
+        @Query("category[in]") category: String? = null
+    ): ProductResponse
+
+
 }

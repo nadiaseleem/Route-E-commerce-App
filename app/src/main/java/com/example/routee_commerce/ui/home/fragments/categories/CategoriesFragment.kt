@@ -13,7 +13,6 @@ import com.example.domain.model.Subcategory
 import com.example.routee_commerce.databinding.FragmentCategoriesBinding
 import com.example.routee_commerce.ui.home.fragments.categories.adapters.CategoriesAdapter
 import com.example.routee_commerce.ui.home.fragments.categories.adapters.SubcategoriesAdapter
-import com.example.routee_commerce.utils.EventWrapper
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
@@ -112,13 +111,12 @@ class CategoriesFragment : Fragment() {
         binding.successView.isVisible = false
     }
 
-    private fun handleEvents(eventWrapper: EventWrapper<CategoriesFragmentContract.Event>) {
-        when (val event = eventWrapper.contentIfNotHandled) {
+    private fun handleEvents(event: CategoriesFragmentContract.Event) {
+        when (event) {
             is CategoriesFragmentContract.Event.ShowSubCategories -> {
                 viewModel.invokeAction(CategoriesFragmentContract.Action.LoadSubCategories(event.category))
             }
         }
-        viewModel.events.value = null
 
     }
 

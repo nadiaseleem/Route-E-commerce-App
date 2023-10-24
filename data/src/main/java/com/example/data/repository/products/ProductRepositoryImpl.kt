@@ -14,4 +14,8 @@ class ProductRepositoryImpl @Inject constructor(private val dataSource: ProductD
     ): ResultWrapper<List<Product?>?> {
         return dataSource.getMostSellingProducts(limit, sort)
     }
+
+    override suspend fun getProducts(categoryId: String?): ResultWrapper<List<Product?>?> {
+        return dataSource.getProducts(categoryId)
+    }
 }

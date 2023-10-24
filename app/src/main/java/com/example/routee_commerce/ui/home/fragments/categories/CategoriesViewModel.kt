@@ -9,7 +9,7 @@ import com.example.domain.model.Category
 import com.example.domain.model.Subcategory
 import com.example.domain.usecases.GetCategoriesUseCase
 import com.example.domain.usecases.GetSubCategoriesUseCase
-import com.example.routee_commerce.utils.EventWrapper
+import com.example.routee_commerce.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,8 +30,8 @@ class CategoriesViewModel @Inject constructor(
     override val subcategoriesStates: LiveData<CategoriesFragmentContract.State<Subcategory>>
         get() = _subcategoriesStates
 
-    private val _events = MutableLiveData<EventWrapper<CategoriesFragmentContract.Event>>()
-    override val events: MutableLiveData<EventWrapper<CategoriesFragmentContract.Event>>
+    private val _events = SingleLiveEvent<CategoriesFragmentContract.Event>()
+    override val events: SingleLiveEvent<CategoriesFragmentContract.Event>
         get() = _events
 
 
@@ -43,12 +43,12 @@ class CategoriesViewModel @Inject constructor(
 
             is CategoriesFragmentContract.Action.CategoryClicked -> {
                 _events.postValue(
-                    EventWrapper(
-                        CategoriesFragmentContract.Event.ShowSubCategories(
+
+                    CategoriesFragmentContract.Event.ShowSubCategories(
                             action.position,
                             action.category
                         )
-                    )
+
                 )
             }
 

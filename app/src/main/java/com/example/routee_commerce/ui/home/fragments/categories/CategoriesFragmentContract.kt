@@ -1,10 +1,9 @@
 package com.example.routee_commerce.ui.home.fragments.categories
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.domain.model.Category
 import com.example.domain.model.Subcategory
-import com.example.routee_commerce.utils.EventWrapper
+import com.example.routee_commerce.utils.SingleLiveEvent
 
 interface CategoriesFragmentContract {
 
@@ -12,7 +11,7 @@ interface CategoriesFragmentContract {
         val categoriesStates: LiveData<State<Category>>
         val subcategoriesStates: LiveData<State<Subcategory>>
 
-        val events: MutableLiveData<EventWrapper<Event>>
+        val events: SingleLiveEvent<Event>
         fun invokeAction(action: Action)
     }
 
