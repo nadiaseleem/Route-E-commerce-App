@@ -1,7 +1,7 @@
 package com.example.data.api
 
 import com.example.data.model.category.CategoryResponse
-import com.example.data.model.subcategories.SubcategoryResponse
+import com.example.data.model.subcategory.SubcategoryResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

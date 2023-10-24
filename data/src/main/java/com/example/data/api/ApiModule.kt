@@ -15,8 +15,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ApiModule {
 
     @Provides
-    fun provideWebServices(retrofit: Retrofit): CategoriesWebServices {
+    fun provideCategoriesWebServices(retrofit: Retrofit): CategoriesWebServices {
         return retrofit.create(CategoriesWebServices::class.java)
+    }
+
+    @Provides
+    fun provideProductsWebServices(retrofit: Retrofit): ProductsWebServices {
+        return retrofit.create(ProductsWebServices::class.java)
     }
 
     @Provides

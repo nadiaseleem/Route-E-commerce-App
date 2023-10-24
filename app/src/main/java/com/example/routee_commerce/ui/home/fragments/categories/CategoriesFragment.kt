@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.domain.model.Category
 import com.example.domain.model.Subcategory
-import com.example.routee_commerce.databinding.FragmentCatrgoriesBinding
+import com.example.routee_commerce.databinding.FragmentCategoriesBinding
 import com.example.routee_commerce.ui.home.fragments.categories.adapters.CategoriesAdapter
 import com.example.routee_commerce.ui.home.fragments.categories.adapters.SubcategoriesAdapter
 import com.example.routee_commerce.utils.EventWrapper
@@ -22,7 +22,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class CategoriesFragment : Fragment() {
-    private lateinit var binding: FragmentCatrgoriesBinding
+    private lateinit var binding: FragmentCategoriesBinding
     private val viewModel: CategoriesViewModel by viewModels()
     private val args: CategoriesFragmentArgs by navArgs()
 
@@ -36,7 +36,7 @@ class CategoriesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCatrgoriesBinding.inflate(inflater, container, false)
+        binding = FragmentCategoriesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -118,6 +118,8 @@ class CategoriesFragment : Fragment() {
                 viewModel.invokeAction(CategoriesFragmentContract.Action.LoadSubCategories(event.category))
             }
         }
+        viewModel.events.value = null
+
     }
 
     private fun renderCategoriesViewState(state: CategoriesFragmentContract.State<Category>) {

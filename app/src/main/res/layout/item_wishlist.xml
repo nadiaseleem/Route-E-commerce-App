@@ -84,7 +84,7 @@
             app:layout_constraintStart_toStartOf="@id/color_image"
             app:layout_constraintTop_toTopOf="@id/color_image" />
         <TextView
-            android:id="@+id/price_text"
+            android:id="@+id/product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/color_image"
@@ -95,19 +95,19 @@
             android:fontFamily="@font/poppins_regular"
             android:textSize="16sp"
             />
+
         <TextView
-            android:id="@+id/old_price_text"
+            android:id="@+id/product_old_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/price_text"
-            app:layout_constraintTop_toTopOf="@id/price_text"
-            app:layout_constraintBottom_toBottomOf="@id/price_text"
+            app:layout_constraintBottom_toBottomOf="@id/product_price"
+            app:layout_constraintStart_toStartOf="@id/product_price"
+            app:layout_constraintTop_toTopOf="@id/product_price"
             android:text="@string/egp_1_500"
             android:textColor="#9B06004F"
             android:fontFamily="@font/poppins_regular"
             android:textSize="12sp"
-            android:layout_marginStart="80dp"
-            />
+            android:layout_marginStart="80dp" />
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

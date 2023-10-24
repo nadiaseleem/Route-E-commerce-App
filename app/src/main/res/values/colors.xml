@@ -10,4 +10,7 @@
     <color name="rv_bg">#80DBE4ED</color>
     <color name="rv_stroke">#4D004182</color>
     <color name="transparent">#00000000</color>
+    <color name="stroke_color">#4C06004F</color>
+    <color name="pale_blue">#99004182</color>
+
 </resources>

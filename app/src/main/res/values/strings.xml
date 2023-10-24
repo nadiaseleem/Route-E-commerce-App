@@ -28,4 +28,6 @@
     <string name="try_again">Try Again</string>
     <string name="shop_now">Shop Now</string>
     <string name="subcategory">Subcategory</string>
+    <string name="most_selling_products">Most Selling Products</string>
+    <string name="review">Review</string>
 </resources>

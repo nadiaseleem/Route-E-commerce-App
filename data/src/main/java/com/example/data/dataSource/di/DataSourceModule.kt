@@ -1,8 +1,10 @@
 package com.example.data.dataSource.di
 
 import com.example.data.dataSource.category.CategoryDataSourceImpl
+import com.example.data.dataSource.product.ProductDataSourceImpl
 import com.example.data.dataSource.subcategories.SubcategoryDataSourceImpl
 import com.example.data.dataSourceContract.category.CategoryDataSource
+import com.example.data.dataSourceContract.product.ProductDataSource
 import com.example.data.dataSourceContract.subcategory.SubcategoryDataSource
 import dagger.Binds
 import dagger.Module
@@ -20,4 +22,8 @@ abstract class DataSourceModule {
     @Binds
     abstract fun bindSubcategoriesDataSource(subcategoryDataSourceImpl: SubcategoryDataSourceImpl):
             SubcategoryDataSource
+
+    @Binds
+    abstract fun bindProductsDataSource(productDataSourceImpl: ProductDataSourceImpl):
+            ProductDataSource
 }

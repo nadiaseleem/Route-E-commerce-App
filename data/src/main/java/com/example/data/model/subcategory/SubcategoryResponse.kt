@@ -1,4 +1,4 @@
-package com.example.data.model.subcategories
+package com.example.data.model.subcategory
 
 import android.os.Parcelable
 import com.example.data.model.BaseResponse

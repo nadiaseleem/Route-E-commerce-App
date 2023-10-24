@@ -114,7 +114,7 @@
             app:layout_constraintTop_toTopOf="@id/separator" />
 
         <TextView
-            android:id="@+id/price_text"
+            android:id="@+id/product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

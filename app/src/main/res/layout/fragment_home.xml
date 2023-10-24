@@ -18,15 +18,53 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <TextView
+            android:id="@+id/most_selling_products_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/most_selling_products"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/header" />
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/products_shimmer_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="horizontal"
+            app:duration="800"
+            app:layout_constraintTop_toBottomOf="@id/most_selling_products_tv">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/item_product_placeholder" />
+
+                <include layout="@layout/item_product_placeholder" />
+
+            </LinearLayout>
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/most_selling_products_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/most_selling_products_tv"
+            tools:listitem="@layout/item_product"
             android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/header" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <TextView
             android:id="@+id/categories_tv"
@@ -38,7 +76,8 @@
             android:text="@string/categories"
             android:textColor="@color/blue"
             android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@id/most_selling_products_rv" />
+            app:layout_constraintTop_toBottomOf="@id/products_shimmer_view_container" />
+
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/categories_shimmer_view_container"
