@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="20dp"
-    app:strokeColor="#4C06004F"
-    android:backgroundTint="@color/white"
     android:layout_marginBottom="10dp"
-    >
+    android:backgroundTint="@color/white"
+    app:cardCornerRadius="20dp"
+    app:strokeColor="#4C06004F">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -53,7 +51,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/nike_air_jordon"
-            android:textColor="@color/Darkblue"
+            android:textColor="@color/darkBlue"
             android:textSize="19sp"
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toTopOf="parent" />
@@ -77,11 +75,11 @@
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:layout_marginTop="2dp"
             android:id="@+id/color_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="2dp"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/black_color"
             android:textColor="#6A6695"
@@ -89,23 +87,24 @@
             app:layout_constraintBottom_toBottomOf="@id/color_image"
             app:layout_constraintStart_toStartOf="@id/color_image"
             app:layout_constraintTop_toTopOf="@id/color_image" />
+
         <TextView
             android:id="@+id/separator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
             android:text="|"
             android:textColor="#6A6695"
-            android:fontFamily="@font/poppins_regular"
-            app:layout_constraintStart_toEndOf="@id/color_name"
-            app:layout_constraintTop_toTopOf="@id/color_name"
             app:layout_constraintBottom_toBottomOf="@id/color_name"
-            />
+            app:layout_constraintStart_toEndOf="@id/color_name"
+            app:layout_constraintTop_toTopOf="@id/color_name" />
+
         <TextView
             android:id="@+id/size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
             android:layout_marginStart="5dp"
+            android:fontFamily="@font/poppins_regular"
             android:text="Size: 40"
             android:textColor="#6A6695"
             android:textSize="12sp"
@@ -120,7 +119,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/egp_1_200"
-            android:textColor="@color/Darkblue"
+            android:textColor="@color/darkBlue"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@id/color_image"
             app:layout_constraintTop_toBottomOf="@id/color_image" />
@@ -135,23 +134,25 @@
             android:backgroundTint="@color/blue"
             app:cardCornerRadius="20sp"
             app:contentPadding="8dp"
-            app:layout_constraintStart_toStartOf="@id/guideline4"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline4">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:src="@drawable/ic_minus" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1"
-                android:textSize="15sp"
-                android:fontFamily="@font/poppins_medium"
                 android:layout_gravity="center"
-                android:textColor="@color/white" />
+                android:fontFamily="@font/poppins_medium"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -162,11 +163,12 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="12dp"
             android:src="@drawable/ic_delete"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginEnd="12dp"
-            android:layout_marginTop="10dp"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
             android:layout_width="wrap_content"
