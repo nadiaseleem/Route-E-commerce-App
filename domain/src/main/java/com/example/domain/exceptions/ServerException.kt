@@ -1,4 +1,4 @@
 package com.example.domain.exceptions
 
-class ServerException(val status: String, val serverMessage: String, val statusCode: Int) :
+class ServerException(val msg: String, val serverMessage: String, val statusCode: Int) :
     Exception(serverMessage)

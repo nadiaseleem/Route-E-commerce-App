@@ -1,24 +1,25 @@
 package com.example.routee_commerce.ui.userAuthentication.fragments.register
 
+import android.content.SharedPreferences
 import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.routee_commerce.data.api.model.User
-import com.example.routee_commerce.data.api.model.UserResponse
-import com.example.routee_commerce.userRepository.UserRepository
-import com.example.routee_commerce.utlis.Message
+import com.example.domain.common.ResultWrapper
+import com.example.domain.model.User
+import com.example.domain.usecase.RegisterUserUseCase
 import com.example.routee_commerce.utlis.SingleLiveEvent
-import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
 import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-    private val userRepository: UserRepository
-) : ViewModel() {
+    private val registerUserUseCase: RegisterUserUseCase,
+    private val sharedPreferences: SharedPreferences
+) : ViewModel(), RegisterContract.ViewModel {
+
     val username = MutableLiveData<String>()
     val phoneNumber = MutableLiveData<String>()
     val email = MutableLiveData<String>()
@@ -32,33 +33,68 @@ class RegisterViewModel @Inject constructor(
     val passwordConfirmationError = MutableLiveData<String?>()
 
     val shouldClearFocus = MutableLiveData<Boolean>()
-    val events = SingleLiveEvent<RegisterViewEvents>()
-    val hideKeyboard = MutableLiveData<Boolean>()
-    val messageLiveData = MutableLiveData<Message>()
 
+    private val _states = MutableLiveData<RegisterContract.State>()
+    override val states = _states
 
-    fun register() {
-        shouldClearFocus.postValue(true)
-        hideKeyboard.postValue(true)
-        if (!validateForm()) return
-        val user = createUser()
-        viewModelScope.launch {
-            try {
-                val response = userRepository.registerUser(user)
-                response.token
-                messageLiveData.postValue(Message("User Registered successfully"))
-                //navigate to home screen
-                events.postValue(RegisterViewEvents.NavigateToHome)
+    private val _events = SingleLiveEvent<RegisterContract.Event>()
+    override val events = _events
 
-            } catch (e: HttpException) {
-                val jsonString = e.response()?.errorBody()?.string()
-                val response = Gson().fromJson(jsonString, UserResponse::class.java)
-                messageLiveData.postValue(Message(response.errors?.msg ?: response.message))
-            } catch (e: Exception) {
-                messageLiveData.postValue(Message(e.localizedMessage))
+    override fun invokeAction(action: RegisterContract.Action) {
+        when (action) {
+            is RegisterContract.Action.RegisterUser -> {
+                register()
+            }
+
+            is RegisterContract.Action.LoginClicked -> {
+                _events.postValue(RegisterContract.Event.NavigateToLogin)
+            }
+
+            is RegisterContract.Action.OutSideClicked -> {
+                _events.postValue(RegisterContract.Event.HideKeyboard)
             }
         }
+    }
 
+    private fun register() {
+        shouldClearFocus.postValue(true)
+        _events.postValue(RegisterContract.Event.HideKeyboard)
+        if (!validateForm()) return
+        val user = createUser()
+        viewModelScope.launch(Dispatchers.IO) {
+            registerUserUseCase.invoke(user).collect { result ->
+                when (result) {
+                    is ResultWrapper.Loading -> {
+                        _states.postValue(RegisterContract.State.Loading)
+                    }
+
+                    is ResultWrapper.Error -> {
+                        _states.postValue(
+                            RegisterContract.State.Error(
+                                result.error.localizedMessage ?: ""
+                            )
+                        )
+                    }
+
+                    is ResultWrapper.ServerError -> {
+                        _states.postValue(
+                            RegisterContract.State.Error(
+                                result.error.msg
+                            )
+                        )
+                    }
+
+                    is ResultWrapper.Success -> {
+                        with(sharedPreferences.edit()) {
+                            putString("token", result.data)
+                            apply()
+                        }
+                        _states.postValue(RegisterContract.State.Success)
+                        _events.postValue(RegisterContract.Event.NavigateToHome)
+                    }
+                }
+            }
+        }
     }
 
     private fun validateForm(): Boolean {
@@ -131,13 +167,4 @@ class RegisterViewModel @Inject constructor(
             passwordConfirmation.value
         )
     }
-
-    fun onLoginClicked() {
-        events.postValue(RegisterViewEvents.NavigateToLogin)
-    }
-
-    fun onOutsideClick() {
-        hideKeyboard.postValue(true)
-    }
-
 }

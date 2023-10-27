@@ -1,4 +1,4 @@
-package com.example.routee_commerce.data.api
+package com.example.data.api
 
 import android.util.Log
 import dagger.Module
@@ -31,7 +31,7 @@ class ApiModule {
     @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         val loggingInterceptor =
-            HttpLoggingInterceptor { message -> Log.e("api", message ?: "") }
+            HttpLoggingInterceptor { message -> Log.e("api", message) }
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
         return loggingInterceptor

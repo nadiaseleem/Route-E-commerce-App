@@ -37,4 +37,5 @@
     <string name="enter_your_email">Enter your email</string>
     <string name="password_confirmation">Password Confirmation</string>
     <string name="welcome_to_route">Welcome To Route</string>
+    <string name="user">user</string>
 </resources>

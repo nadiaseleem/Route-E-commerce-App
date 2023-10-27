@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -25,7 +26,7 @@ class RegisterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewBinding = FragmentRegisterBinding.inflate(inflater, container, false)
         return viewBinding.root
     }
@@ -37,27 +38,67 @@ class RegisterFragment : Fragment() {
         viewBinding.lifecycleOwner = this
         hideKeyboard()
         subscribeToLiveData()
+        initViews()
+    }
 
+    private fun initViews() {
+        viewBinding.registerBtn.setOnClickListener {
+            viewModel.invokeAction(RegisterContract.Action.RegisterUser)
+        }
+        viewBinding.loginDoHaveAccountTv.setOnClickListener {
+            viewModel.invokeAction(RegisterContract.Action.LoginClicked)
+        }
+        viewBinding.constraintOutside.setOnClickListener {
+            viewModel.invokeAction(RegisterContract.Action.OutSideClicked)
+        }
     }
 
     private fun subscribeToLiveData() {
         viewModel.events.observe(viewLifecycleOwner, ::handleEvents)
-        viewModel.hideKeyboard.observe(viewLifecycleOwner) { hide ->
-            if (hide)
-                hideKeyboard()
-        }
-        viewModel.messageLiveData.observe(viewLifecycleOwner) {
-            Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_SHORT)
-                .setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE).show()
-        }
-
+        viewModel.states.observe(viewLifecycleOwner, ::handleStates)
     }
 
-    private fun handleEvents(registerViewEvent: RegisterViewEvents) {
-        when (registerViewEvent) {
-            RegisterViewEvents.NavigateToHome -> navigateToHome()
-            RegisterViewEvents.NavigateToLogin -> navigateToLogin()
+    private fun handleEvents(event: RegisterContract.Event) {
+        when (event) {
+            is RegisterContract.Event.NavigateToHome -> navigateToHome()
+            is RegisterContract.Event.NavigateToLogin -> navigateToLogin()
+            is RegisterContract.Event.HideKeyboard -> hideKeyboard()
         }
+    }
+
+    private fun handleStates(state: RegisterContract.State) {
+        when (state) {
+            is RegisterContract.State.Error -> {
+                showErrorView(state.message)
+            }
+
+            is RegisterContract.State.Loading -> {
+                showLoadingView()
+            }
+
+            is RegisterContract.State.Success -> {
+                showSuccessView()
+            }
+        }
+    }
+
+    private fun showSuccessView() {
+        viewBinding.icNext.isVisible = true
+        viewBinding.progressBar.isVisible = false
+    }
+
+    private fun showErrorView(message: String) {
+        viewBinding.icNext.isVisible = true
+        viewBinding.progressBar.isVisible = false
+        Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT)
+            .setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE)
+            .setBackgroundTint(resources.getColor(R.color.white))
+            .show()
+    }
+
+    private fun showLoadingView() {
+        viewBinding.icNext.isVisible = false
+        viewBinding.progressBar.isVisible = true
     }
 
     private fun navigateToLogin() {
@@ -69,11 +110,9 @@ class RegisterFragment : Fragment() {
         requireActivity().finish()
     }
 
-
     private fun hideKeyboard() {
         view?.hideKeyboard(activity as AppCompatActivity?)
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

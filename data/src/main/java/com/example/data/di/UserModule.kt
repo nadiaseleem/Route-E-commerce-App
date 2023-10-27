@@ -1,8 +1,9 @@
-package com.example.routee_commerce.userRepository
+package com.example.data.di
 
-import com.example.routee_commerce.data.userDataSource.UserDataSource
-import com.example.routee_commerce.data.userDataSourceImpl.UserDataSourceImpl
-import com.example.routee_commerce.data.userRepositoryImpl.UserRepositoryImpl
+import com.example.data.dataSource.user.UserDataSourceImpl
+import com.example.data.dataSourceContract.user.UserDataSource
+import com.example.data.repository.user.UserRepositoryImpl
+import com.example.domain.repositories.user.UserRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -10,7 +11,7 @@ import dagger.hilt.android.components.ViewModelComponent
 
 @Module
 @InstallIn(ViewModelComponent::class)
-abstract class UserRepositoryModule {
+abstract class UserModule {
     @Binds
     abstract fun provideUserRepository(repo: UserRepositoryImpl): UserRepository
 

@@ -16,11 +16,10 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_outside"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blue"
-            android:onClick="@{()->vm.onOutsideClick()}"
-
             tools:context=".ui.userAuthentication.fragments.register.RegisterFragment">
 
             <LinearLayout
@@ -28,7 +27,9 @@
                 android:layout_height="match_parent"
                 android:layout_margin="15dp"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="-96dp"
+                tools:layout_editor_absoluteY="73dp">
 
                 <ImageView
                     android:layout_width="350dp"
@@ -183,32 +184,61 @@
                     app:clearFocusOnCondition="@{vm.shouldClearFocus}" />
 
                 <TextView
+                    android:id="@+id/login_do_have_account_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:onClick="@{()->vm.onLoginClicked()}"
                     android:text="@string/g_do_you_have_an_account_sign_in"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
 
-                <Button
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/register_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
-                    android:backgroundTint="@color/white"
-                    android:fontFamily="@font/poppins_medium"
+                    android:background="@drawable/edit_text_rounded"
                     android:hapticFeedbackEnabled="true"
-                    android:onClick="@{()->vm.register()}"
-                    android:padding="18dp"
-                    android:text="@string/sign_up"
-                    android:textColor="@color/blue"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:padding="18dp">
+
+                    <TextView
+                        android:id="@+id/btn_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/sign_up"
+                        android:textColor="@color/blue"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ic_next"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="30dp"
+                        android:src="@drawable/ic_next"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="30dp"
+                        android:indeterminateTint="@color/blue"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </ScrollView>
 </layout>
