@@ -36,6 +36,9 @@
     <string name="enter_your_password">Enter your password</string>
     <string name="enter_your_email">Enter your email</string>
     <string name="password_confirmation">Password Confirmation</string>
-    <string name="welcome_to_route">Welcome To Route</string>
+    <string name="welcome_Back_to_route">Welcome Back To Route</string>
     <string name="user">user</string>
+    <string name="sign_in_with_your_mail">Please sign in with your mail</string>
+    <string name="sign_in">Sign in</string>
+    <string name="forgot_password">Forgot Password</string>
 </resources>
