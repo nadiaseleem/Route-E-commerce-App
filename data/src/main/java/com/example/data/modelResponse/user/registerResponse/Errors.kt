@@ -1,4 +1,4 @@
-package com.example.data.model.user
+package com.example.data.modelResponse.user.registerResponse
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

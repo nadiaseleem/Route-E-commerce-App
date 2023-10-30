@@ -1,4 +1,4 @@
-package com.example.routee_commerce.ui.userAuthentication.fragments.register
+package com.example.routee_commerce.ui.userAuthentication.fragments.login
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -11,7 +11,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Module
 @InstallIn(ViewModelComponent::class)
-object RegisterModule {
+object LoginModule {
 
     @Provides
     fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {

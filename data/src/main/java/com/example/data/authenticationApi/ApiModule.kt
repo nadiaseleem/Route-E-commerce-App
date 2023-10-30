@@ -1,4 +1,4 @@
-package com.example.data.api
+package com.example.data.authenticationApi
 
 import android.util.Log
 import dagger.Module
@@ -50,7 +50,7 @@ class ApiModule {
     }
 
     @Provides
-    fun getApis(retrofit: Retrofit): WebServices {
-        return retrofit.create(WebServices::class.java)
+    fun getApis(retrofit: Retrofit): AuthenticationWebServices {
+        return retrofit.create(AuthenticationWebServices::class.java)
     }
 }

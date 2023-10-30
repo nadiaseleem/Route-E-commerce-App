@@ -12,4 +12,8 @@ class UserRepositoryImpl @Inject constructor(private val userDataSource: UserDat
     override suspend fun registerUser(user: User): Flow<ResultWrapper<String?>> {
         return userDataSource.registerUser(user)
     }
+
+    override suspend fun loginUser(user: User): Flow<ResultWrapper<String?>> {
+        return userDataSource.loginUser(user)
+    }
 }

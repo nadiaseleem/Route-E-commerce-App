@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.example.routee_commerce.ui.userAuthentication.fragments.login.LoginViewModel" />
     </data>
 
     <ScrollView
@@ -34,11 +37,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="@string/welcome_Back_to_route"
                     android:textColor="@color/white"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -48,7 +50,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:text="@string/sign_in_with_your_mail"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -72,9 +74,12 @@
                     android:maxLines="1"
                     android:minLines="1"
                     android:padding="18dp"
+                    android:text="@={vm.email}"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray_110"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    app:Error="@{vm.emailError}"
+                    app:clearFocusOnCondition="@{vm.shouldClearFocus}" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -89,7 +94,7 @@
                     android:id="@+id/password_edt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/edit_text_rounded"
                     android:fontFamily="@font/poppins_regular"
                     android:hint="@string/enter_your_password"
@@ -98,15 +103,18 @@
                     android:maxLines="1"
                     android:minLines="1"
                     android:padding="18dp"
+                    android:text="@={vm.password}"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray_110"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    app:Error="@{vm.passwordError}"
+                    app:clearFocusOnCondition="@{vm.shouldClearFocus}" />
 
                 <TextView
                     android:id="@+id/forgot_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginVertical="10dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="@string/forgot_password"
                     android:textColor="@color/white"

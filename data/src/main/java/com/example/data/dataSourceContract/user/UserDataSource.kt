@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserDataSource {
     suspend fun registerUser(user: User): Flow<ResultWrapper<String?>>
+    suspend fun loginUser(user: User): Flow<ResultWrapper<String?>>
 }

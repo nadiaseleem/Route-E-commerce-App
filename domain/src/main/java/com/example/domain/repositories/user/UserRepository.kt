@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
     suspend fun registerUser(user: User): Flow<ResultWrapper<String?>>
+    suspend fun loginUser(user: User): Flow<ResultWrapper<String?>>
 }

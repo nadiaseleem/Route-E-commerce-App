@@ -1,6 +1,6 @@
-package com.example.data.model
+package com.example.data.modelResponse
 
-import com.example.data.model.user.Errors
+import com.example.data.modelResponse.user.registerResponse.Errors
 import com.google.gson.annotations.SerializedName
 
 open class BaseResponse<T>(

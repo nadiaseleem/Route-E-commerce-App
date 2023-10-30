@@ -1,6 +1,6 @@
 package com.example.data
 
-import com.example.data.model.BaseResponse
+import com.example.data.modelResponse.BaseResponse
 import com.example.domain.common.ResultWrapper
 import com.example.domain.exceptions.ParsingException
 import com.example.domain.exceptions.ServerException

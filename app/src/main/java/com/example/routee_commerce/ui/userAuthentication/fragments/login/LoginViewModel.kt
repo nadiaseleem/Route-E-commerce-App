@@ -1,4 +1,4 @@
-package com.example.routee_commerce.ui.userAuthentication.fragments.register
+package com.example.routee_commerce.ui.userAuthentication.fragments.login
 
 import android.content.SharedPreferences
 import android.util.Patterns
@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.common.ResultWrapper
 import com.example.domain.model.User
-import com.example.domain.usecase.RegisterUserUseCase
+import com.example.domain.usecase.LoginUserUseCase
 import com.example.routee_commerce.utlis.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,62 +15,57 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(
-    private val registerUserUseCase: RegisterUserUseCase,
+class LoginViewModel @Inject constructor(
+    private val loginUserUseCase: LoginUserUseCase,
     private val sharedPreferences: SharedPreferences
-) : ViewModel(), RegisterContract.ViewModel {
+) : ViewModel(), LoginContract.ViewModel {
 
-    val username = MutableLiveData<String>()
-    val phoneNumber = MutableLiveData<String>()
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
-    val passwordConfirmation = MutableLiveData<String>()
 
-    val usernameError = MutableLiveData<String?>()
-    val phoneNumberError = MutableLiveData<String?>()
     val emailError = MutableLiveData<String?>()
     val passwordError = MutableLiveData<String?>()
-    val passwordConfirmationError = MutableLiveData<String?>()
 
     val shouldClearFocus = MutableLiveData<Boolean>()
 
-    private val _states = MutableLiveData<RegisterContract.State>()
+    private val _states = MutableLiveData<LoginContract.State>()
     override val states = _states
 
-    private val _events = SingleLiveEvent<RegisterContract.Event>()
+    private val _events = SingleLiveEvent<LoginContract.Event>()
     override val events = _events
 
-    override fun invokeAction(action: RegisterContract.Action) {
+    override fun invokeAction(action: LoginContract.Action) {
         when (action) {
-            is RegisterContract.Action.RegisterUser -> {
-                register()
+            LoginContract.Action.LoginUser -> {
+                login()
             }
 
-            is RegisterContract.Action.LoginClicked -> {
-                _events.postValue(RegisterContract.Event.NavigateToLogin)
+            LoginContract.Action.OutSideClicked -> {
+                _events.postValue(LoginContract.Event.HideKeyboard)
             }
 
-            is RegisterContract.Action.OutSideClicked -> {
-                _events.postValue(RegisterContract.Event.HideKeyboard)
+            LoginContract.Action.RegisterClicked -> {
+                _events.postValue(LoginContract.Event.NavigateToRegister)
             }
         }
+
     }
 
-    private fun register() {
+    private fun login() {
         shouldClearFocus.postValue(true)
-        _events.postValue(RegisterContract.Event.HideKeyboard)
+        _events.postValue(LoginContract.Event.HideKeyboard)
         if (!validateForm()) return
         val user = createUser()
         viewModelScope.launch(Dispatchers.IO) {
-            registerUserUseCase.invoke(user).collect { result ->
+            loginUserUseCase.invoke(user).collect { result ->
                 when (result) {
                     is ResultWrapper.Loading -> {
-                        _states.postValue(RegisterContract.State.Loading)
+                        _states.postValue(LoginContract.State.Loading)
                     }
 
                     is ResultWrapper.Error -> {
                         _states.postValue(
-                            RegisterContract.State.Error(
+                            LoginContract.State.Error(
                                 result.error.localizedMessage ?: ""
                             )
                         )
@@ -78,7 +73,7 @@ class RegisterViewModel @Inject constructor(
 
                     is ResultWrapper.ServerError -> {
                         _states.postValue(
-                            RegisterContract.State.Error(
+                            LoginContract.State.Error(
                                 result.error.msg
                             )
                         )
@@ -86,34 +81,26 @@ class RegisterViewModel @Inject constructor(
 
                     is ResultWrapper.Success -> {
                         with(sharedPreferences.edit()) {
-                            putString("registerToken", result.data)
+                            putString("loginToken", result.data)
                             apply()
                         }
-                        _states.postValue(RegisterContract.State.Success)
-                        _events.postValue(RegisterContract.Event.NavigateToHome)
+                        _states.postValue(LoginContract.State.Success)
+                        _events.postValue(LoginContract.Event.NavigateToHome)
                     }
                 }
             }
         }
     }
 
+    private fun createUser(): User {
+        return User(
+            email = email.value,
+            password = password.value,
+        )
+    }
+
     private fun validateForm(): Boolean {
         var valid = true
-        if (username.value.isNullOrBlank()) {
-            valid = false
-            usernameError.postValue("please enter username")
-        } else {
-            usernameError.postValue(null)
-        }
-        if (phoneNumber.value.isNullOrBlank()) {
-            valid = false
-            phoneNumberError.postValue("please enter valid mobile number")
-        } else if (phoneNumber.value!!.length != 11) {
-            valid = false
-            phoneNumberError.postValue("A valid mobile number should be 11 numbers")
-        } else {
-            phoneNumberError.postValue(null)
-        }
         if (email.value.isNullOrBlank()) {
             valid = false
             emailError.postValue("please enter email")
@@ -123,7 +110,6 @@ class RegisterViewModel @Inject constructor(
         } else {
             emailError.postValue(null)
         }
-
         if (password.value.isNullOrBlank()) {
             valid = false
             passwordError.postValue("please enter password")
@@ -145,26 +131,7 @@ class RegisterViewModel @Inject constructor(
         } else {
             passwordError.postValue(null)
         }
-        if (passwordConfirmation.value.isNullOrBlank()) {
-            valid = false
-            passwordConfirmationError.postValue("please reenter password")
-        } else if (passwordConfirmation.value != password.value) {
-            valid = false
-            passwordConfirmationError.postValue("password doesn't match")
-        } else {
-            passwordConfirmationError.postValue(null)
-        }
-
         return valid
     }
 
-    private fun createUser(): User {
-        return User(
-            username.value,
-            phoneNumber.value,
-            email.value,
-            password.value,
-            passwordConfirmation.value
-        )
-    }
 }
