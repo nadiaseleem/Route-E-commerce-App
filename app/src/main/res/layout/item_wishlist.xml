@@ -1,144 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="20dp"
-    app:strokeColor="#4C06004F"
-    android:backgroundTint="@color/white"
-    android:layout_marginBottom="10dp"
-    >
-    <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="wlt"
+            type="com.example.domain.model.WishListItem" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/item_image_cardview"
-            android:layout_width="100dp"
+        android:layout_height="@dimen/_80sdp"
+        app:cardCornerRadius="20dp"
+        app:strokeColor="#4C06004F"
+        android:backgroundTint="@color/white"
+        android:layout_marginBottom="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="#4C06004F"
-            android:backgroundTint="@color/white">
-            <ImageView
-                android:id="@+id/item_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/nike_air_jordon"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/item_image_cardview"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription" />
-        </com.google.android.material.card.MaterialCardView>
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.2544529" />
-        <TextView
-            android:id="@+id/item_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="@string/nike_air_jordon"
-            android:textColor="@color/Darkblue"
-            android:textSize="19sp"
-            app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/color_image"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            app:cardCornerRadius="20dp"
-            app:strokeWidth="0dp"
-            app:layout_constraintStart_toStartOf="@id/item_title"
-            app:layout_constraintTop_toBottomOf="@id/item_title"
-            >
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@color/gray"
+                app:strokeColor="#4C06004F"
+                android:backgroundTint="@color/white">
 
-                />
+                <ImageView
+                    android:id="@+id/item_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    tools:src="@drawable/wish_list_placeholder"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription"
+                    />
+            </com.google.android.material.card.MaterialCardView>
 
-        </com.google.android.material.card.MaterialCardView>
-        <TextView
-            android:id="@+id/color_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="@string/black_color"
-            android:textColor="@color/Darkblue"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/color_image"
-            app:layout_constraintStart_toStartOf="@id/color_image"
-            app:layout_constraintTop_toTopOf="@id/color_image" />
-        <TextView
-            android:id="@+id/price_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/color_image"
-            app:layout_constraintTop_toBottomOf="@id/color_image"
-            android:text="@string/egp_1_200"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/Darkblue"
-            android:fontFamily="@font/poppins_regular"
-            android:textSize="16sp"
-            />
-        <TextView
-            android:id="@+id/old_price_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/price_text"
-            app:layout_constraintTop_toTopOf="@id/price_text"
-            app:layout_constraintBottom_toBottomOf="@id/price_text"
-            android:text="@string/egp_1_500"
-            android:textColor="#9B06004F"
-            android:fontFamily="@font/poppins_regular"
-            android:textSize="12sp"
-            android:layout_marginStart="80dp"
-            />
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue"
-            app:cornerRadius="15dp"
-            android:text="@string/add_to_cart"
-            android:paddingVertical="5dp"
-            android:paddingHorizontal="13dp"
-            android:textSize="14sp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/poppins_regular"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-        <androidx.cardview.widget.CardView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:padding="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:cardElevation="20dp"
-            app:cardCornerRadius="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp">
-
-            <com.makeramen.roundedimageview.RoundedImageView
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/ic_like" />
-        </androidx.cardview.widget.CardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</com.google.android.material.card.MaterialCardView>
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.2544529" />
+
+            <TextView
+                android:id="@+id/item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_regular"
+                tools:text="Product Title"
+                android:textColor="@color/Darkblue"
+                android:textSize="19sp"
+                app:layout_constraintStart_toStartOf="@id/guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/price_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/item_title"
+                app:layout_constraintTop_toBottomOf="@id/item_title"
+                tools:text="@string/egp_1_200"
+                android:layout_marginTop="18dp"
+                android:textColor="@color/Darkblue"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="16sp" />
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue"
+                app:cornerRadius="15dp"
+                android:text="@string/add_to_cart"
+                android:paddingVertical="5dp"
+                android:paddingHorizontal="13dp"
+                android:textSize="14sp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/poppins_regular"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:cardElevation="20dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_like" />
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

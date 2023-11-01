@@ -7,42 +7,48 @@ import com.example.domain.exceptions.ServerException
 import com.example.domain.exceptions.ServerTimeOutException
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
 
-suspend fun <T> SafeApiCall(apiCall: suspend () -> T): ResultWrapper<T> {
-    try {
+suspend fun <T> safeApiCall(apiCall: suspend () -> BaseResponse<T>): Flow<ResultWrapper<T>> =
+    flow {
+        emit(ResultWrapper.Loading)
         val result = apiCall.invoke()
-        return ResultWrapper.Success(result)
-    } catch (e: Exception) {
+        result.data?.let {
+            emit(ResultWrapper.Success(result.data))
+        }
+    }.catch {e->
         when (e) {
             is TimeoutException -> {
-                return ResultWrapper.Error(ServerTimeOutException(e))
+                 emit(ResultWrapper.Error(ServerTimeOutException(e)))
             }
 
             is IOException -> {
-                return ResultWrapper.Error(ServerTimeOutException(e))
+                emit(ResultWrapper.Error(ServerTimeOutException(e)))
             }
 
             is HttpException -> {
                 val body = e.response()?.errorBody()?.string()
                 val response = Gson().fromJson(body, BaseResponse::class.java)
-                return ResultWrapper.ServerError(
+                 emit(ResultWrapper.ServerError(
                     ServerException(
                         response.statusMsg ?: "",
                         response.message ?: "",
                         e.code()
                     )
-                )
+                ))
             }
 
             is JsonSyntaxException -> {
-                return ResultWrapper.Error(ParsingException(e))
+                emit(ResultWrapper.Error(ParsingException(e)))
             }
 
-            else -> return ResultWrapper.Error(e)
+            else ->  ResultWrapper.Error(e as Exception)
 
         }
     }
-}
+
