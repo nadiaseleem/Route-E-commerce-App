@@ -12,29 +12,26 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ApiModule {
-
+object ApiModule {
     @Provides
-    fun provideGsonConverterFactory(): GsonConverterFactory {
-        return GsonConverterFactory.create()
+    fun getWebServices(retrofit: Retrofit): WebServices {
+        return retrofit.create(WebServices::class.java)
     }
-
     @Provides
-    fun provideOkHttpClient(
-        loggingInterceptor: HttpLoggingInterceptor
-    ): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            .build()
-    }
-
-    @Provides
-    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
-        val loggingInterceptor =
-            HttpLoggingInterceptor { message -> Log.e("api", message) }
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-
+    fun provideLoggingInterceptor():HttpLoggingInterceptor{
+        val loggingInterceptor = HttpLoggingInterceptor {
+            Log.e("api", it)
+        }
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         return loggingInterceptor
+    }
+    @Provides
+    fun provideOkHttpClient(loggingInterceptor:HttpLoggingInterceptor): OkHttpClient {
+        return OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
+    }
+    @Provides
+    fun provideGsonConverterFactory():GsonConverterFactory{
+        return GsonConverterFactory.create()
     }
 
     @Provides
@@ -42,15 +39,7 @@ class ApiModule {
         okHttpClient: OkHttpClient,
         gsonConverterFactory: GsonConverterFactory
     ): Retrofit {
-        return Retrofit.Builder()
-            .client(okHttpClient)
-            .addConverterFactory(gsonConverterFactory)
-            .baseUrl("https://ecommerce.routemisr.com/")
-            .build()
-    }
-
-    @Provides
-    fun getApis(retrofit: Retrofit): WebServices {
-        return retrofit.create(WebServices::class.java)
+        return Retrofit.Builder().addConverterFactory(gsonConverterFactory).client(okHttpClient)
+            .baseUrl("https://ecommerce.routemisr.com/").build()
     }
 }
