@@ -33,6 +33,7 @@ object ApiModule {
     fun provideGsonConverterFactory():GsonConverterFactory{
         return GsonConverterFactory.create()
     }
+
     @Provides
     fun provideRetrofit(
         okHttpClient: OkHttpClient,

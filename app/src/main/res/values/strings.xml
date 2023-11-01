@@ -10,13 +10,13 @@
     <string name="your_full_name">Your full name</string>
     <string name="your_email">Your Email</string>
     <string name="your_password">Your Password</string>
-    <string name="password">**********</string>
+    <string name="password_fake">**********</string>
     <string name="your_mobile_number">Your Mobile Number</string>
     <string name="your_address">Your Address</string>
     <string name="phone_num">01159732150</string>
     <string name="masr_el_gdeda_street_9">Masr EL Gdeda,street 9,</string>
     <string name="_01159732150">01159732150</string>
-    <string name="full_name">Ahmed Hussin</string>
+    <string name="full_name_fake">Ahmed Hussin</string>
     <string name="nike_air_jordon">Nike Air Jordon</string>
     <string name="black_color">Black color</string>
     <string name="add_to_cart">Add to cart</string>
@@ -24,4 +24,18 @@
     <string name="egp_1_200">EGP 1,200</string>
     <string name="total_price">Total price</string>
     <string name="cart">Cart</string>
+    <string name="full_name">Full Name</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="email_address">E-mail address</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="g_don_t_have_an_account_sign_up">Don\'t have an account? sign up</string>
+    <string name="g_do_you_have_an_account_sign_in">Do you have an account? sign in</string>
+    <string name="enter_your_full_name">Enter your full name</string>
+    <string name="enter_your_mobile_number">Enter your mobile number</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="password_confirmation">Password Confirmation</string>
+    <string name="welcome_to_route">Welcome To Route</string>
+    <string name="user">user</string>
 </resources>

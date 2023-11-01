@@ -80,7 +80,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.16.0'
 
     //sharedPreferences
-    implementation "androidx.preference:preference:1.2.1"
+    implementation "androidx.preference:preference-ktx:1.2.1"
 
 
     //hilt
@@ -91,6 +91,9 @@ dependencies {
     def nav_version = "2.7.4"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    //Logging interceptor
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
 
 }
 // Allow references to generated code

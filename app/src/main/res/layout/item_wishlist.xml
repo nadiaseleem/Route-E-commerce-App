@@ -52,7 +52,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.2544529" />
-
             <TextView
                 android:id="@+id/item_title"
                 android:layout_width="wrap_content"
@@ -76,9 +75,6 @@
                 android:textColor="@color/Darkblue"
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="16sp" />
-
-
-
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

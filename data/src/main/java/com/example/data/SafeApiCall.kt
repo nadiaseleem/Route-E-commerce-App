@@ -49,6 +49,7 @@ suspend fun <T> safeApiCall(apiCall: suspend () -> BaseResponse<T>): Flow<Result
 
             else ->  ResultWrapper.Error(e as Exception)
 
+            }
         }
     }
 
