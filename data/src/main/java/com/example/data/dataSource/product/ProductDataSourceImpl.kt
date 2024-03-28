@@ -21,7 +21,19 @@ class ProductDataSourceImpl @Inject constructor(private val webServices: Product
 
     }
 
-    override suspend fun getProducts(categoryId: String?): ResultWrapper<List<Product?>?> {
-        return safeApiCall { webServices.getProducts(categoryId).data?.map { it?.toProduct() } }
+    override suspend fun getProducts(
+        categoryId: String?,
+        searchKeyWord: String?
+    ): ResultWrapper<List<Product?>?> {
+        if (categoryId != null)
+            return safeApiCall { webServices.getProducts(categoryId).data?.map { it?.toProduct() } }
+        if (searchKeyWord != null)
+            return safeApiCall {
+                webServices.getProducts().data?.map { it?.toProduct() }
+                    ?.filter { it?.title?.contains(searchKeyWord, ignoreCase = true) == true }
+            }
+
+        return safeApiCall { webServices.getProducts().data?.map { it?.toProduct() } }
+
     }
 }

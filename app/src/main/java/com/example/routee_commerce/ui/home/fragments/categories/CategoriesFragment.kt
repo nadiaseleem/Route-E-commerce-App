@@ -180,10 +180,10 @@ class CategoriesFragment : Fragment() {
     }
 
 
-    override fun onResume() {
-        super.onResume()
-        binding.categoriesShimmerViewContainer.startShimmerAnimation()
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        binding.categoriesShimmerViewContainer.startShimmerAnimation()
+//    }
 
     override fun onPause() {
         binding.categoriesShimmerViewContainer.stopShimmerAnimation()
@@ -191,10 +191,5 @@ class CategoriesFragment : Fragment() {
 
     }
 
-    override fun onStop() {
-        super.onStop()
-        viewModel.events.removeObservers(viewLifecycleOwner)
-
-    }
 
 }

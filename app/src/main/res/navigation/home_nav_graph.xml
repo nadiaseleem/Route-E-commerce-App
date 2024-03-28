@@ -30,11 +30,6 @@
             app:nullable="true" />
     </fragment>
     <fragment
-        android:id="@+id/productListFragment"
-        android:name="com.example.routee_commerce.ui.home.fragments.productList.ProductListFragment"
-        android:label="ProductListFragment"
-        tools:layout="@layout/fragment_product_list" />
-    <fragment
         android:id="@+id/wishListFragment"
         android:name="com.example.routee_commerce.ui.home.fragments.wishlist.WishListFragment"
         android:label="fragment_wishlist"
@@ -44,4 +39,20 @@
         android:name="com.example.routee_commerce.ui.home.fragments.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/productListFragment"
+        android:name="com.example.routee_commerce.ui.home.fragments.productList.ProductListFragment"
+        android:label="ProductListFragment"
+        tools:layout="@layout/fragment_product_list">
+        <argument
+            android:name="searchKeyWord"
+            android:defaultValue="null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="products"
+            android:defaultValue="@null"
+            app:argType="com.example.domain.model.Product[]"
+            app:nullable="true" />
+    </fragment>
 </navigation>
