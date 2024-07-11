@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    tools:context=".ui.home.fragments.profile.ProfileFragment">
+    android:padding="18dp"
+    tools:context=".ui.home.fragments.profile.ProfileFragment"
+    >
 
 
     <TextView
@@ -14,10 +15,11 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
         android:textColor="@color/Darkblue"
-        android:textSize="24sp"
+        android:textSize="@dimen/_14ssp"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Welcome,Ahmed" />
+        android:text="Welcome,Ahmed" />
 
     <TextView
         android:id="@+id/email_text"
@@ -27,13 +29,15 @@
         android:textColor="@color/descDarkBlue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/welcome_message"
-        tools:text="ahmedhussin@gmail.com" />
+        android:text="ahmedhussin@gmail.com"
+        android:textSize="@dimen/_10ssp"
+        />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/full_name_block"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/email_text">
 
@@ -44,7 +48,7 @@
             android:fontFamily="@font/poppins_regular"
             android:text="@string/your_full_name"
             android:textColor="@color/Darkblue"
-            android:textSize="24sp"
+            android:textSize="@dimen/_14ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,8 +72,8 @@
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/edit_icon_size"
                 android:inputType="text"
-                android:text="@string/full_name"
-                android:textColor="@color/Darkblue" />
+                android:text="@string/full_name_fake"
+                android:textColor="@color/darkBlue" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -88,7 +92,8 @@
             android:fontFamily="@font/poppins_regular"
             android:text="@string/your_email"
             android:textColor="@color/Darkblue"
-            android:textSize="24sp"
+            android:textSize="@dimen/_14ssp"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -113,7 +118,7 @@
                 android:drawableEnd="@drawable/edit_icon_size"
                 android:inputType="textEmailAddress"
                 android:text="ahmedhussin@gmail.com"
-                android:textColor="@color/Darkblue" />
+                android:textColor="@color/darkBlue" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -132,7 +137,7 @@
             android:fontFamily="@font/poppins_regular"
             android:text="@string/your_password"
             android:textColor="@color/Darkblue"
-            android:textSize="24sp"
+            android:textSize="@dimen/_14ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -156,8 +161,8 @@
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/edit_icon_size"
                 android:inputType="textPassword"
-                android:text="@string/password"
-                android:textColor="@color/Darkblue" />
+                android:text="@string/password_fake"
+                android:textColor="@color/darkBlue" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -176,7 +181,7 @@
             android:fontFamily="@font/poppins_regular"
             android:text="@string/your_mobile_number"
             android:textColor="@color/Darkblue"
-            android:textSize="24sp"
+            android:textSize="@dimen/_14ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
@@ -203,7 +208,7 @@
                 android:drawableEnd="@drawable/edit_icon_size"
                 android:inputType="phone"
                 android:text="@string/_01159732150"
-                android:textColor="@color/Darkblue" />
+                android:textColor="@color/darkBlue" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -222,7 +227,7 @@
             android:fontFamily="@font/poppins_regular"
             android:text="@string/your_address"
             android:textColor="@color/Darkblue"
-            android:textSize="24sp"
+            android:textSize="@dimen/_14ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
@@ -249,7 +254,7 @@
                 android:drawableEnd="@drawable/edit_icon_size"
                 android:inputType="text"
                 android:text="@string/masr_el_gdeda_street_9"
-                android:textColor="@color/Darkblue" />
+                android:textColor="@color/darkBlue" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

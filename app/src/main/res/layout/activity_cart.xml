@@ -30,7 +30,7 @@
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/poppins_regular"
                 android:text="@string/cart"
-                android:textColor="@color/Darkblue"
+                android:textColor="@color/darkBlue"
                 android:textSize="20sp" />
 
             <ImageView

@@ -3,8 +3,8 @@
 
     <item
         android:drawable="@drawable/ic_edit"
-        android:width="28dp"
-        android:height="28dp"
+        android:width="20dp"
+        android:height="20dp"
         />
 
 </layer-list >
